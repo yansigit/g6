@@ -1,0 +1,21 @@
+services:
+  my-app:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
