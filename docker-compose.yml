@@ -3,6 +3,7 @@ services:
     build: .
     ports:
       - "8000:8000"
+    # change below two sections to mariadb if you want to use mariadb
     depends_on:
       - postgres
     links:
@@ -16,6 +17,20 @@ services:
       POSTGRES_DB: mydatabase
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+#  mariadb:
+#    image: mariadb:latest
+#    environment:
+#      MYSQL_ROOT_PASSWORD: your_password
+#      MYSQL_DATABASE: mydatabase
+#      MYSQL_USER: mariadb_user
+#    ports:
+#      - "3306:3306"
+#    volumes:
+#      - mariadb_data:/var/lib/mysql/data
 
 volumes:
   postgres_data:
+#  mariadb_data:
